@@ -80,8 +80,7 @@ function createCardTemplate(object) {
   return `
     <div id="movie">
         <img src="${object.Poster}" alt="${object.Title}">
-        <span>${object.Title}</span>
-        <span>${object.Year}</span>
+        <span>${object.Title} - ${object.Year}</span>
         <span>Puntuación: ${object.imdbRating}</span>
         <button id="${object.Title}" class="btn-add"><i class="fa-solid fa-circle-plus"></i></button>
     </div>
@@ -131,10 +130,10 @@ function addEventListenersToButtons() {
           saveToLocalStorage();
           console.log(`Película ${data.Title} agregada al carrito.`);
         } else {
-          existingMovie.cantidad + 1; // Increment the quantity
-          console.log(
-            `Cantidad de la película ${data.Title} actualizada en el carrito.`
-          );
+          console.log("La pelicula ya se encuentra en el carrito.")
+          // existingMovie.cantidad + 1; // Increment the quantity
+          // console.log(
+          // );
         }
         saveToLocalStorage();
         renderArrayCart(); // Render the cart again to show the updated list
@@ -209,6 +208,9 @@ function renderArrayCart() {
         movie.cantidad += 1;
         saveToLocalStorage();
         renderArrayCart();
+        console.log( `Cantidad de película "${movie.Title}" actualizada en el carrito.`
+      )
+
       }
     });
   });

@@ -1,3 +1,8 @@
+@media (max-width: 1280px) {
+ #gallery-poster{
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 @media (max-width: 768px) {
     nav .navbar-nav {
@@ -6,11 +11,8 @@
     }
   
     #hero {
-      height: 60vh;
       background-size: contain;
-    }
-
-    
+    }    
   
     section h2,
     div h2 {
@@ -39,6 +41,16 @@
     #contact-form textarea {
       width: 90%;
     }
+  }
+  @media (max-width: 635px) {
+    #gallery-poster{
+      justify-items: center;
+    }
+    
+    #gallery-poster > img{
+      width: 60%;
+    }
+
   }
   
   @media (max-width: 480px) {

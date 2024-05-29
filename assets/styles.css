@@ -212,7 +212,6 @@ input[type="submit"]:hover {
 /* HEADER */
 
 h1 {
-  margin: 6rem auto;
   font-size: 4em;
   line-height: 1.1;
   font-family: var(--title-font);
@@ -225,10 +224,10 @@ h1 {
 /* HERO */
 #hero {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 0.5rem;
   margin-top: 5rem;
 }
 
@@ -238,14 +237,16 @@ h1 {
 
 #gallery-poster {
   margin-top: 3rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 0.6rem;
+  /* border: 1px solid gold; */
 }
 
 #gallery-poster > img {
-  width: 25%;
   cursor: pointer;
 }
+
 #gallery-poster > img:hover {
   box-shadow: 1px 1px 5px 1px white;
 }
@@ -287,15 +288,17 @@ h1 {
 }
 
 #movie {
-  cursor: pointer;
-  border-radius: 10px;
   color: var(--fiveth-color);
   font-family: var(--title-font);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  padding: 0 1rem;
+}
+
+#movie:hover{
+  box-shadow: 1px 1px 10px 1px white;
 }
 
 
@@ -312,12 +315,12 @@ h1 {
 #movie > img {
   width: 150px;
   border: 2px solid var(--fiveth-color);
-  border-radius: 5px;
   margin-bottom: 1rem;
 }
 
-#card > p {
+#movie > span {
   text-align: left;
+  padding: .8rem;
 }
 
 .ocultar {
@@ -406,6 +409,7 @@ h1 {
   align-items: center;
   padding: 2rem 0;
   width: 80%;
+  height: 500px;
   border-radius: 15px;
   border: 1px solid white;
 }
@@ -460,6 +464,7 @@ h2 {
   color: var(--fiveth-color);
   font-size: 3rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 #contact-form {
