@@ -291,6 +291,7 @@ function addEventListenersToPosters() {
         searchMoviesHTML.innerHTML = `
       ${createCardTemplate(data)}
       `;
+      addEventListenersToButtons()
         section.scrollIntoView({ behavior: "smooth" });
       });
     });
@@ -311,6 +312,7 @@ async function searchMovie() {
       searchMoviesHTML.innerHTML = `
         ${createCardTemplate(data)}
       `;
+      addEventListenersToButtons()
     });
   });
 }
@@ -338,7 +340,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderArrayCart();
   renderGallery(galleryPostersArray);
   searchMovie();
-  addEventListenersToButtons()
 });
 
 console.log(arrayCart);

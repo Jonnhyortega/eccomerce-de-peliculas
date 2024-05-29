@@ -391,16 +391,12 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  border: 1px solid gold;
-  /* background: radial-gradient(var(--third-color), var(--primary-color)); */
 }
 
 #container-buttons-search {
   display: flex;
   align-items: center;
   gap: 1rem;
-  border: 1px solid gold;
-
 }
 
 #container-search-movies {
