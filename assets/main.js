@@ -56,7 +56,7 @@ async function obtenerDatos(string) {
   const URL = "https://www.omdbapi.com/?apikey=712dcc23&t=";
 
   try {
-    const response = await fetch(URL + string.replace(" ", "+").trim());
+    const response = await fetch(URL + string.replace(/ /g, "+"));
 
     if (!response.ok) {
       throw new Error("No se pudo acceder al servidor");
@@ -115,14 +115,16 @@ function addEventListenersToButtons() {
   const btnAdd = document.querySelectorAll(".btn-add");
   btnAdd.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const movieTitle = e.target.id;
+      console.log(e.target.id)
+      const movieTitle = e.currentTarget.id;
       obtenerDatos(movieTitle).then((data) => {
+        console.log(data)
         if (!data) return;
         let existingMovie = arrayCart.find(
           (movie) => movie.Title === data.Title
-        );
+        )
         if (!existingMovie) {
-          let price = data.price || getRandomInt(2000, 10000);
+          let price = getRandomInt(2000, 10000);
           data.price = price;
           data.cantidad = 1;
           arrayCart.push(data);
@@ -290,8 +292,6 @@ function addEventListenersToPosters() {
       ${createCardTemplate(data)}
       `;
         section.scrollIntoView({ behavior: "smooth" });
-        addEventListenersToButtons();
-        console.log(data.Title);
       });
     });
   });
@@ -311,7 +311,6 @@ async function searchMovie() {
       searchMoviesHTML.innerHTML = `
         ${createCardTemplate(data)}
       `;
-      addEventListenersToButtons();
     });
   });
 }
@@ -339,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderArrayCart();
   renderGallery(galleryPostersArray);
   searchMovie();
+  addEventListenersToButtons()
 });
 
 console.log(arrayCart);

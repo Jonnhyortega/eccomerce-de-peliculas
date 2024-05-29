@@ -1,0 +1,57 @@
+
+@media (max-width: 768px) {
+    nav .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    #hero {
+      height: 60vh;
+      background-size: contain;
+    }
+
+    
+  
+    section h2,
+    div h2 {
+      font-size: 2rem;
+    }
+  
+    #about-us p {
+      font-size: 1rem;
+    }
+  
+    #container-buttons-search {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    #container-buttons-search input[type="search"] {
+      width: 90%;
+    }
+  
+    #filter {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    #contact-form input,
+    #contact-form textarea {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #container-buttons-search {
+      gap: 0.5rem;
+    }
+  
+    #container-buttons-search input[type="search"] {
+      width: 100%;
+    }
+  
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+    }
+  }
