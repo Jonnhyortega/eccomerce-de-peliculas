@@ -17,7 +17,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/assets/responsiveQuerys.css">
     <title>Eccomerce</title>
   </head>
   <body>
@@ -100,11 +100,13 @@
     <section id="about-us">
       <h2>Nosotros</h2>
       <p>
-        Somos una tienda online de cine dedicados a ofrecerte una cuidadosa
-        selección de las mejores películas para disfrutar y coleccionar en un
-        formato de altisima calidad. Nuestra misión es compartir nuestra pasión
-        por el cine y brindarte la mejor experiencia de compra posible.
-        ¡Bienvenido a nuestra tienda!
+      Bienvenido a nuestra tienda online de cine, donde te 
+      ofrecemos una cuidada selección de las mejores películas 
+      para disfrutar y coleccionar en formato de altísima calidad. 
+      Nuestra misión es compartir nuestra pasión por el cine y brindarte
+       una experiencia de compra excepcional. Explora nuestro catálogo y 
+       descubre tesoros cinematográficos que harán de tu colección 
+       algo único. ¡Gracias por elegirnos!
       </p>
     </section>
 
@@ -151,30 +153,32 @@
     <section id="contact">
       <h2>Contáctanos</h2>
       <form id="contact-form">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" /><br /><br />
-        <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email" /><br /><br />
+        <label for="name">Nombre:
+        </label>
+        <input type="text" id="name" name="name" />
+        <p id="name-contact"></p>
+        <label for="email">Correo electrónico:
+        </label>
+        <input type="email" id="email" name="email" />
+        <p id="email-contact"></p>
         <label for="message">Mensaje:</label>
-        <textarea id="message" name="message"></textarea><br /><br />
+        <textarea id="message" name="message"></textarea>
         <input type="submit"></input>
       </form>
     </section>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2024 Nuestra Tienda de Películas</p>
+      <h1>Grant Movies</h1>
+      <div id="links">
+        <a href="#recommended">Recomendaciones</a>
+        <a href="#search-movies">Buscar Pelicula</a>
+        <a href="#contact">¿Ocurrió algun problema? Contactanos</a>
+        <a href="#movies">Titulos</a>
+      </div>
+      <p>&copy; 2024 Tienda de Películas</p>
     </footer>
   
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("dropdown-cart")
-          .addEventListener("click", function (event) {
-            event.stopPropagation();
-          });
-      });
-    </script>
     <script type="module" src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,4 +1,3 @@
-
 export const arrayAll = [
   "Gladiator",
   "Avengers: Infinity War",
@@ -215,7 +214,10 @@ let numberProducts = document.querySelector("#number-products");
 let arrayCart = JSON.parse(localStorage.getItem("arrayCart")) || [];
 let arrayProfiles = JSON.parse(localStorage.getItem("arrayProfiles")) || [];
 let filterButton = document.querySelector("#filter-button");
-
+let formContact = document.querySelector("#contact-form");
+let inputName = document.querySelector("#name");
+let inputEmail = document.querySelector("#email");
+let message = document.querySelector("#message");
 // FUNCTION TO GET MOVIE DATA IN API
 async function obtenerDatos(string) {
   const URL = "https://www.omdbapi.com/?apikey=712dcc23&t=";
@@ -245,7 +247,8 @@ function createCardTemplate(object) {
     <div id="movie">
         <img src="${object.Poster}" alt="${object.Title}">
         <span>${object.Title} - ${object.Year}</span>
-        <span>Puntuación: ${object.imdbRating} - ${renderStarsRate(object.imdbRating)}</span>
+        <span>Calificacion: ${object.imdbRating}</span>
+        <span>${renderStarsRate(object.imdbRating)}</span>
         <button id="${object.Title}" class="btn-add"><i class="fa-solid fa-circle-plus"></i></button>
     </div>
   `;
@@ -273,6 +276,7 @@ async function renderMovies(place, array) {
 const saveToLocalStorage = () => {
   localStorage.setItem("arrayCart", JSON.stringify(arrayCart));
 };
+
 const saveToLocalStorageProfiles = () => {
   localStorage.setItem("arrayProfiles", JSON.stringify(arrayProfiles));
 };
@@ -356,14 +360,12 @@ function renderArrayCart() {
     function deleteAllProducts() {
       document.querySelector("#delete-all").addEventListener("click", () => {
         let responseUser = window.confirm(
-          "Estas seguro que deseas borrar todo?"
+          "Estas seguro que deseas vaciar el carrito?"
         );
         if (responseUser) {
           arrayCart = [];
           saveToLocalStorage();
           renderArrayCart();
-        } else {
-          window.alert("Ok tene cuidado la proxima");
         }
       });
     }
@@ -494,7 +496,7 @@ async function searchMovie() {
       }
       if (data.Poster === "N/A") {
         searchMoviesHTML.innerHTML = `
-        <span > Nada para mostrar con ese nombre => ${data.Title} </span>  
+        <span>${data.Title} no es una pelicula, por favor ingrese un nombre valido </span>  
       `;
         return ;
       }
@@ -525,6 +527,14 @@ function renderStarsRate(rated) {
       return `❗`;
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("dropdown-cart")
+    .addEventListener("click", function (event) {
+      event.stopPropagation();
+    });
+});
 
 // FUNCTION TO FILTER MOVIES FOR CATEGORIES
 filterButton.addEventListener("click", () => {
@@ -575,10 +585,7 @@ filterButton.addEventListener("click", () => {
 });
 
 // FUNCTION TO FORM CONTACT
-let formContact = document.querySelector("#contact-form");
-let inputName = document.querySelector("#name");
-let inputEmail = document.querySelector("#email");
-let message = document.querySelector("#message");
+let sectionContact = document.querySelector("#contact")
 formContact.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -593,10 +600,20 @@ formContact.addEventListener("submit", (e) => {
     isEmail(profile.email) == true){
     arrayProfiles.push(profile)
     saveToLocalStorageProfiles()
-
+    sectionContact.innerHTML = ""
+    sectionContact.innerHTML = `
+    <span>Muchas gracias por contactarnos, en breve 
+    estaremos respondiendo a su consulta.</span>
+    `
   }if(containNumbers(profile.name) == false){
+    document.querySelector("#name-contact").innerHTML = `
+    Escriba un nombre correcto sin numeros
+    `
     console.log("Escriba un nombre correcto sin numeros")
   }if(isEmail(profile.email) == false){
+    document.querySelector("#email-contact").innerHTML = `
+    Escriba un nombre correcto sin numeros
+    `
     console.log(`${profile.email} no es un dominio correcto` )
   }
   console.log("No se cumplio ninguna condicion")

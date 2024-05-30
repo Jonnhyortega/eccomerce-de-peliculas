@@ -3,7 +3,6 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-
 @media (max-width: 768px) {
     nav .navbar-nav {
       flex-direction: column;
@@ -41,8 +40,8 @@
     #contact-form textarea {
       width: 90%;
     }
-  }
-  @media (max-width: 635px) {
+  } 
+@media (max-width: 635px) {
 
     #dropdown-cart {
       background-color: gold;
@@ -57,7 +56,7 @@
 
   }
   
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
     #container-buttons-search {
       gap: 0.5rem;
     }
@@ -72,4 +71,11 @@
     }
 
     
+  }
+
+  @media(max-width: 310px){
+    h2{
+      font-size: 1rem;
+      
+    }
   }
