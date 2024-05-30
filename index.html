@@ -16,9 +16,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="stylesheet" href="/assets/responsiveQuerys.css">
-    <link rel="icon" href="/public/imgs/GM-sin-letras.png" />
+    <link rel="stylesheet" href="/node_modules/styles.css">
+    <link rel="stylesheet" href="/node_modules/responsiveQuerys.css">
     <title>Eccomerce</title>
   </head>
   <body>
@@ -82,7 +81,7 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span id="number-products"></span>
               </a>
-              <ul id="dropdown-cart" class="dropdown-menu"></ul>
+              <div id="dropdown-cart" class="dropdown-menu"></div>
             </li>
           </ul>
         </div>
@@ -119,21 +118,21 @@
     <section id="movies">
       <h2>Titulos</h2>
       <div id="filter">
-        <button id="filter-button">Filtrar</button>
-        <select>
-          <option value="all">Todos</option>
-          <option value="drama">Accion</option>
-          <option value="acción">Ciencia Ficcion</option>
-          <option value="acción">Comedia</option>
-          <option value="acción">Drama</option>
-          <option value="acción">Romance</option>
-          <option value="acción">Western</option>
-          <option value="acción">Terror</option>
-          <option value="acción">Thriller</option>
+        <button id="filter-button"><i class="fa-solid fa-filter"></i></button>
+        <select id="genre-select">
+          <option value="All">Todos</option>
+          <option value="Drama">Accion</option>
+          <option value="Ciencia Ficcion">Ciencia Ficcion</option>
+          <option value="Comedia">Comedia</option>
+          <option value="Drama">Drama</option>
+          <option value="Romance">Romance</option>
+          <option value="Western">Western</option>
+          <option value="Terror">Terror</option>
+          <option value="Thriller">Thriller</option>
           <!-- Agregar más opciones según sea necesario -->
         </select>
       </div>
-      <ul id="list-main-movies"></ul>
+      <div id="list-main-movies"></div>
     </section>
 
     <!-- SEARCH MOVIES -->
@@ -166,7 +165,7 @@
     <footer>
       <p>&copy; 2024 Nuestra Tienda de Películas</p>
     </footer>
-
+  
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document
@@ -176,7 +175,7 @@
           });
       });
     </script>
-    <script src="/assets/main.js" defer></script>
+    <script type="module" src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
