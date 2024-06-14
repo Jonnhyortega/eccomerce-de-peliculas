@@ -245,12 +245,19 @@ async function obtenerDatos(string) {
 function createCardTemplate(object) {
   return `
     <div id="movie">
-        <img src="${object.Poster}" alt="${object.Title}">
-        <span>${object.Title} - ${object.Year}</span>
-        <span>Calificacion: ${object.imdbRating}</span>
-        <span>${renderStarsRate(object.imdbRating)}</span>
-        <button id="${object.Title}" class="btn-add"><i class="fa-solid fa-circle-plus"></i></button>
-    </div>
+        <img loading="lazy" src="${object.Poster}" alt="${object.Title}">
+        <div>
+            <div>        
+                <span>${object.Title} - ${object.Year}</span>
+                <span>${renderStarsRate(object.imdbRating)}</span>
+            </div>
+            <button id="${
+                  object.Title
+                }" class="btn-add"><i class="fa-solid fa-cart-plus"></i>
+            </button>
+
+        </div>
+     </div>
   `;
 }
 
@@ -259,13 +266,14 @@ async function renderMovies(place, array) {
   for (const movie of array) {
     try {
       const movieToRender = await obtenerDatos(movie);
-      
+
       if (movieToRender) {
         place.innerHTML += createCardTemplate(movieToRender);
       } else {
         console.log(`No se pudo renderizar la película: ${movie}`);
       }
     } catch (error) {
+      // place.innerHTML = renderLoader()
       console.error(`Error al renderizar la película ${movie}:`, error);
     }
   }
@@ -355,7 +363,7 @@ function renderArrayCart() {
       <button id="delete-all"><i class="fa-solid fa-trash-can"></i></button>
     </div>
       `;
-      
+
     deleteAllProducts();
     function deleteAllProducts() {
       document.querySelector("#delete-all").addEventListener("click", () => {
@@ -488,6 +496,7 @@ async function searchMovie() {
   searchButton.addEventListener("click", () => {
     let input = document.querySelector("#input-search-movie");
     let searchMoviesHTML = document.querySelector("#container-search-movies");
+    searchMoviesHTML.innerHTML = renderLoader();
     searchMoviesHTML.innerHTML = "";
     obtenerDatos(input.value).then((data) => {
       if (!data) {
@@ -498,7 +507,7 @@ async function searchMovie() {
         searchMoviesHTML.innerHTML = `
         <span>${data.Title} no es una pelicula, por favor ingrese un nombre valido </span>  
       `;
-        return ;
+        return;
       }
       searchMoviesHTML.innerHTML = `
         ${createCardTemplate(data)}
@@ -511,22 +520,32 @@ async function searchMovie() {
 // FUNCTION TO RENDER STARS IN RATED
 function renderStarsRate(rated) {
   switch (true) {
-    case (rated >= 0 && rated <= 1):
+    case rated >= 0 && rated <= 1:
       return `⭐`;
-    case (rated > 1 && rated <= 3):
+    case rated > 1 && rated <= 3:
       return `⭐⭐`;
-    case (rated > 3 && rated <= 7): 
+    case rated > 3 && rated <= 7:
       return `⭐⭐⭐`;
-    case (rated >7 && rated <= 9):
+    case rated > 7 && rated <= 9:
       return `⭐⭐⭐⭐`;
-    case (rated > 9):
+    case rated > 9:
       return `⭐⭐⭐⭐⭐`;
-    case (rated == "N/A"):
+    case rated == "N/A":
       return `❗`;
-      default:
+    default:
       return `❗`;
   }
 }
+// LOAD RINGS
+const renderLoader = () => {
+  return `   
+  <div class="lds-ring">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>`;
+};
 
 document.addEventListener("DOMContentLoaded", function () {
   document
@@ -585,7 +604,7 @@ filterButton.addEventListener("click", () => {
 });
 
 // FUNCTION TO FORM CONTACT
-let sectionContact = document.querySelector("#contact")
+let sectionContact = document.querySelector("#contact");
 formContact.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -595,29 +614,29 @@ formContact.addEventListener("submit", (e) => {
     message: message.value,
   };
 
-  if(
-    containNumbers(profile.name) == false &&
-    isEmail(profile.email) == true){
-    arrayProfiles.push(profile)
-    saveToLocalStorageProfiles()
-    sectionContact.innerHTML = ""
+  if (containNumbers(profile.name) == false && isEmail(profile.email) == true) {
+    arrayProfiles.push(profile);
+    saveToLocalStorageProfiles();
+    sectionContact.innerHTML = "";
     sectionContact.innerHTML = `
     <span>Muchas gracias por contactarnos, en breve 
     estaremos respondiendo a su consulta.</span>
-    `
-  }if(containNumbers(profile.name) == false){
+    `;
+  }
+  if (containNumbers(profile.name) == false) {
     document.querySelector("#name-contact").innerHTML = `
     Escriba un nombre correcto sin numeros
-    `
-    console.log("Escriba un nombre correcto sin numeros")
-  }if(isEmail(profile.email) == false){
+    `;
+    console.log("Escriba un nombre correcto sin numeros");
+  }
+  if (isEmail(profile.email) == false) {
     document.querySelector("#email-contact").innerHTML = `
     Escriba un nombre correcto sin numeros
-    `
-    console.log(`${profile.email} no es un dominio correcto` )
+    `;
+    console.log(`${profile.email} no es un dominio correcto`);
   }
-  console.log("No se cumplio ninguna condicion")
-  return
+  console.log("No se cumplio ninguna condicion");
+  return;
 });
 
 document.addEventListener("DOMContentLoaded", () => {
